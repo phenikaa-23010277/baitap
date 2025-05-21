@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Xem trước hình ảnh</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    #image {
+      width: 500px;
+      height: 300px;
+      border: 2px dashed #ccc;
+      margin: 0 auto 20px;
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #444;
+      font-size: 18px;
+    }
+
+    img.preview {
+      width: 100px;
+      margin: 5px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      transition: 0.3s;
+    }
+
+    img.preview:hover {
+      border-color: #00aaff;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Di chuột vào ảnh nhỏ để xem trước</h2>
+
+  <div id="image">
+    Di chuột qua một hình ảnh bên dưới để hiển thị ở đây.
+  </div>
+
+  <!-- Các ảnh nhỏ -->
+  <img class="preview" src="https://via.placeholder.com/500x300/FF9999/000000?text=Ảnh+1" alt="Đây là ảnh 1" onmouseover="update(this)" onmouseout="unDo()">
+  <img class="preview" src="https://via.placeholder.com/500x300/99FF99/000000?text=Ảnh+2" alt="Đây là ảnh 2" onmouseover="update(this)" onmouseout="unDo()">
+  <img class="preview" src="https://via.placeholder.com/500x300/9999FF/000000?text=Ảnh+3" alt="Đây là ảnh 3" onmouseover="update(this)" onmouseout="unDo()">
+
+  <script>
+    function update(previewPic) {
+      console.log("Đã hover ảnh:", previewPic.alt);
+
+      // Đổi hình nền div
+      const display = document.getElementById("image");
+      display.style.backgroundImage = "url('" + previewPic.src + "')";
+      
+      // Đổi văn bản trong div
+      display.innerHTML = previewPic.alt;
+    }
+
+    function unDo() {
+      const display = document.getElementById("image");
+      display.style.backgroundImage = "url('')";
+      display.innerHTML = "Di chuột qua một hình ảnh bên dưới để hiển thị ở đây.";
+    }
+  </script>
+
+</body>
+</html>
